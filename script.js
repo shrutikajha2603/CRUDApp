@@ -97,13 +97,49 @@ function AddData() {
 function deleteData(index) {
   var peopleList;
   if (localStorage.getItem("peopleList") == null) {
-  peopleList = [];
+    peopleList = [];
   } else {
-  peopleList = JSON.parse (localStorage.getItem
-  ("peopleList"));
+    peopleList = JSON.parse(localStorage.getItem("peopleList"));
   }
-  peopleList.splice (index, 1);
-  localStorage.setItem("peopleList", JSON.stringify
-  (peopleList));
+  peopleList.splice(index, 1);
+  localStorage.setItem("peopleList", JSON.stringify(peopleList));
   showData();
+}
+
+// function to update/edit data in local storage
+function updateData(index) {
+  // Submit button will hide and Update button will show for updating of Data in local storage
+  document.getElementById("Submit").style.display = "none";
+  document.getElementById("Update").style.display = "block";
+  var peopleList;
+  if (localStorage.getItem("peopleList") == null) {
+    peopleList = [];
+  } else {
+    peopleList = JSON.parse(localStorage.getItem("peopleList"));
   }
+  document.getElementById("name").value = peopleList[index].name;
+  document.getElementById("age").value = peopleList[index].age;
+  document.getElementById("address").value - peopleList[index].address;
+  document.getElementById("email").value = peopleList[index].name;
+
+  document.querySelector("#Update").onclick = function () {
+    if (validateForm() == true) {
+      peopleList[index].name = document.getElementById("name").value;
+      peopleList[index].age = document.getElementById("age").value;
+      peopleList[index].address = document.getElementById("address").value;
+      peopleList[index].email = document.getElementById("email").value;
+      
+      localStorage.setItem("peopleList", JSON.stringify
+      (peopleList));
+      showData();
+      document.getElementById("name").value = "";
+      document.getElementById("age").value = "";
+      document.getElementById("address").value = "";
+      document.getElementById("email").value = "";
+      // Update button will hide and Update button will show for updating of Data in local storage
+      document.getElementById("Submit").style.display = "block";
+      document.getElementById("Update").style.display= "none";
+    }
+  };
+}
+
