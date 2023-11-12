@@ -120,7 +120,7 @@ function updateData(index) {
   document.getElementById("name").value = peopleList[index].name;
   document.getElementById("age").value = peopleList[index].age;
   document.getElementById("address").value - peopleList[index].address;
-  document.getElementById("email").value = peopleList[index].name;
+  document.getElementById("email").value = peopleList[index].email;
 
   document.querySelector("#Update").onclick = function () {
     if (validateForm() == true) {
